@@ -1,9 +1,9 @@
-require './live_or_die'
+require './conway_algorithm'
 
 class GameOfLife
   include LiveOrDie
 
-  attr_reader :world
+  attr_reader :height, :width
 
   def initialize(height = 5, width = 5)
     @height = height
@@ -39,9 +39,8 @@ class GameOfLife
 
     range1.each do |row_index|
       range2.each do |column_index|
-
-        sum = game_of_life(range1, range2, row_index, column_index, world)
-        
+        persisted_or_perished = conway_algorithm(range1, range2, row_index, column_index, world)
+        next_world[row_index][column_index] = persisted_or_perished
       end
     end
     next_world
