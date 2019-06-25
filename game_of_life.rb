@@ -1,3 +1,5 @@
+require './live_or_die'
+
 class GameOfLife
   include LiveOrDie
 
@@ -39,7 +41,7 @@ class GameOfLife
           next_world[row_index][column_index] = 0
         else
           next_world[row_index][column_index] = 1
-        end  
+        end
       end
     end
   end
