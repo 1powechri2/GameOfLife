@@ -11,11 +11,12 @@ class GameOfLife
   end
 
   def generate_world
-    @world = Array.new(@height) do
+    world = Array.new(@height) do
       Array.new(@width) do
         rand.round
       end
     end
+    world
   end
 
   def blank_world
@@ -24,39 +25,25 @@ class GameOfLife
     end
   end
 
-  def the_next_generation
-    generate_world()
-    #Engage!
-    range1 = 0..(@height - 1)
-    range2 = 0..(@width - 1)
+  def row_range
+    0..(@height - 1)
+  end
 
+  def column_range
+    0..(@width - 1)
+  end
+
+  def the_next_generation(range1, range2, world)
+    #Engage!
     next_world = blank_world()
 
     range1.each do |row_index|
       range2.each do |column_index|
 
-        sum = game_of_life(range1, range2, row_index, column_index, @world)
-
-        if sum <= 1 || sum >= 4
-          next_world[row_index][column_index] = 0
-        else
-          next_world[row_index][column_index] = 1
-        end
+        sum = game_of_life(range1, range2, row_index, column_index, world)
+        
       end
     end
-
-    range1.each do |row_index|
-      p @world[row_index]
-    end
-    p 'the_next_generation'
-    @world = next_world
+    next_world
   end
 end
-
-gof = GameOfLife.new
-
-gof.the_next_generation
-gof.the_next_generation
-gof.the_next_generation
-gof.the_next_generation
-gof.the_next_generation

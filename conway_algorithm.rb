@@ -1,5 +1,5 @@
 module LiveOrDie
-  def game_of_life(range1, range2, row_index, column_index, world)
+  def conway_algorithm(range1, range2, row_index, column_index, world)
     #check top right corner
     if row_index == 0 && column_index == 0
       top_left_corner = 0
@@ -91,6 +91,12 @@ module LiveOrDie
       bottom_right_corner = world[row_index + 1][column_index + 1]
     end
 
-    top_left_corner + top_center + top_right_corner + left_center + right_center + bottom_left_corner + bottom_center + bottom_right_corner
+    sum = top_left_corner + top_center + top_right_corner + left_center + right_center + bottom_left_corner + bottom_center + bottom_right_corner
+
+    if sum <= 1 || sum >= 4
+      0
+    else
+      1
+    end
   end
 end
