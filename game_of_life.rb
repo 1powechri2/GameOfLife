@@ -44,5 +44,19 @@ class GameOfLife
         end
       end
     end
+
+    range1.each do |row_index|
+      p @world[row_index]
+    end
+    p 'the_next_generation'
+    @world = next_world
   end
 end
+
+gof = GameOfLife.new
+
+gof.the_next_generation
+gof.the_next_generation
+gof.the_next_generation
+gof.the_next_generation
+gof.the_next_generation
